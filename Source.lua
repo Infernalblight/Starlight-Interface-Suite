@@ -1,5 +1,4 @@
 --[[
-
 ███████╗████████╗ █████╗ ██████╗ ██╗     ██╗ ██████╗ ██╗  ██╗████████╗    ██╗███╗   ██╗████████╗███████╗██████╗ ███████╗ █████╗  ██████╗███████╗    ███████╗██╗   ██╗██╗████████╗███████╗
 ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║     ██║██╔════╝ ██║  ██║╚══██╔══╝    ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔════╝    ██╔════╝██║   ██║██║╚══██╔══╝██╔════╝
 ███████╗   ██║   ███████║██████╔╝██║     ██║██║  ███╗███████║   ██║       ██║██╔██╗ ██║   ██║   ██████╗ ██████╔╝█████╗  ███████║██║     ██████╗     ███████╗██║   ██║██║   ██║   ██████╗  
@@ -50,7 +49,7 @@ However, once again I apologise. I have added the meanings of some unorthodox/st
 I kind of gave up/forgot to comment within the Elements too, so another apology :sob:
  
 
-COMMENT MEANINGS:
+COMMENT MEANINGS: .
 A Section is something used to easily identify what a section of code is used for/means
 Subsections help to oraganize within subsections, and are smaller, breaking down the code even more
 
@@ -152,9 +151,16 @@ end
 
 local isStudio = RunService:IsStudio() or false
 local website = "nebulasoftworks.xyz/starlight"
-local Acrylic = isStudio and require(ReplicatedStorage.AcrylicBundled)
-	or loadstring(game:HttpGet("https://raw." .. website .. "/AcrylicModule.luau"))()
-Acrylic.Init()
+local AcrylicLoader = isStudio and function()
+	return require(ReplicatedStorage.AcrylicBundled)
+end or loadstring(game:HttpGet("https://raw." .. website .. "/AcrylicModule.luau"))
+
+local Acrylic = AcrylicLoader and AcrylicLoader()
+
+if Acrylic and Acrylic.Init then
+	Acrylic.Init()
+end
+
 
 local Request = (syn and syn.request)
 	or (fluxus and fluxus.request)
@@ -897,12 +903,234 @@ local Themes = {
 			}),
 		},
 	},
+	["Obsidian Night"] = {
+	Backgrounds = {
+		Dark = Color3.fromRGB(10, 11, 14),
+		Medium = Color3.fromRGB(16, 17, 21),
+		Light = Color3.fromRGB(22, 23, 28),
+		Groupbox = Color3.fromRGB(18, 19, 24),
+		Highlight = Color3.fromRGB(28, 29, 35),
+	},
+	Foregrounds = {
+		Active = Color3.fromRGB(255, 255, 255),
+		Light = Color3.fromRGB(235, 235, 235),
+		Medium = Color3.fromRGB(170, 170, 170),
+		Dark = Color3.fromRGB(90, 90, 90),
+		MediumHover = Color3.fromRGB(195, 195, 195),
+		DarkHover = Color3.fromRGB(120, 120, 120),
+	},
+	Miscellaneous = {
+		Divider = Color3.fromRGB(140, 140, 140),
+		Shadow = Color3.fromRGB(8, 8, 10),
+		LighterShadow = Color3.fromRGB(18, 18, 22),
+	},
+	Accents = {
+		Main = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(120, 170, 255)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(90, 140, 230)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(70, 110, 200)),
+		}),
+		Brighter = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(160, 200, 255)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(130, 175, 240)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(110, 150, 220)),
+		}),
+	},
+},
+
+["Cyber Neon"] = {
+	Backgrounds = {
+		Dark = Color3.fromRGB(7, 7, 10),
+		Medium = Color3.fromRGB(12, 12, 18),
+		Light = Color3.fromRGB(18, 18, 26),
+		Groupbox = Color3.fromRGB(14, 14, 22),
+		Highlight = Color3.fromRGB(22, 22, 34),
+	},
+	Foregrounds = {
+		Active = Color3.fromRGB(240, 255, 255),
+		Light = Color3.fromRGB(220, 240, 240),
+		Medium = Color3.fromRGB(150, 180, 190),
+		Dark = Color3.fromRGB(90, 110, 120),
+		MediumHover = Color3.fromRGB(180, 215, 225),
+		DarkHover = Color3.fromRGB(120, 150, 160),
+	},
+	Miscellaneous = {
+		Divider = Color3.fromRGB(0, 255, 220),
+		Shadow = Color3.fromRGB(6, 6, 9),
+		LighterShadow = Color3.fromRGB(12, 12, 18),
+	},
+	Accents = {
+		Main = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 220)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(180, 0, 255)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 120)),
+		}),
+		Brighter = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(120, 255, 235)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(210, 120, 255)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 120, 180)),
+		}),
+	},
+},
+
+["Solar Dusk"] = {
+	Backgrounds = {
+		Dark = Color3.fromRGB(18, 12, 10),
+		Medium = Color3.fromRGB(28, 18, 14),
+		Light = Color3.fromRGB(38, 26, 20),
+		Groupbox = Color3.fromRGB(32, 22, 18),
+		Highlight = Color3.fromRGB(46, 32, 26),
+	},
+	Foregrounds = {
+		Active = Color3.fromRGB(255, 245, 235),
+		Light = Color3.fromRGB(245, 230, 215),
+		Medium = Color3.fromRGB(190, 165, 145),
+		Dark = Color3.fromRGB(120, 95, 80),
+		MediumHover = Color3.fromRGB(215, 190, 170),
+		DarkHover = Color3.fromRGB(150, 120, 100),
+	},
+	Miscellaneous = {
+		Divider = Color3.fromRGB(255, 170, 90),
+		Shadow = Color3.fromRGB(14, 9, 7),
+		LighterShadow = Color3.fromRGB(22, 15, 12),
+	},
+	Accents = {
+		Main = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 170, 90)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 120, 70)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 90, 60)),
+		}),
+		Brighter = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 200, 130)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 150, 110)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 120, 95)),
+		}),
+	},
+},
+
+["Midnight Forest"] = {
+	Backgrounds = {
+		Dark = Color3.fromRGB(12, 18, 14),
+		Medium = Color3.fromRGB(18, 26, 20),
+		Light = Color3.fromRGB(24, 34, 26),
+		Groupbox = Color3.fromRGB(20, 30, 23),
+		Highlight = Color3.fromRGB(28, 42, 32),
+	},
+	Foregrounds = {
+		Active = Color3.fromRGB(235, 245, 235),
+		Light = Color3.fromRGB(220, 235, 220),
+		Medium = Color3.fromRGB(160, 185, 160),
+		Dark = Color3.fromRGB(95, 120, 95),
+		MediumHover = Color3.fromRGB(190, 215, 190),
+		DarkHover = Color3.fromRGB(120, 150, 120),
+	},
+	Miscellaneous = {
+		Divider = Color3.fromRGB(120, 200, 140),
+		Shadow = Color3.fromRGB(8, 12, 9),
+		LighterShadow = Color3.fromRGB(14, 20, 15),
+	},
+	Accents = {
+		Main = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(120, 200, 140)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(90, 170, 120)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(70, 140, 100)),
+		}),
+		Brighter = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(160, 220, 170)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(120, 200, 150)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(100, 170, 130)),
+		}),
+	},
+},
+
+["Rose Noir"] = {
+	Backgrounds = {
+		Dark = Color3.fromRGB(14, 10, 12),
+		Medium = Color3.fromRGB(22, 14, 18),
+		Light = Color3.fromRGB(30, 18, 24),
+		Groupbox = Color3.fromRGB(26, 16, 21),
+		Highlight = Color3.fromRGB(38, 22, 30),
+	},
+	Foregrounds = {
+		Active = Color3.fromRGB(255, 240, 245),
+		Light = Color3.fromRGB(245, 225, 235),
+		Medium = Color3.fromRGB(190, 155, 170),
+		Dark = Color3.fromRGB(120, 90, 105),
+		MediumHover = Color3.fromRGB(215, 180, 195),
+		DarkHover = Color3.fromRGB(150, 115, 130),
+	},
+	Miscellaneous = {
+		Divider = Color3.fromRGB(220, 120, 160),
+		Shadow = Color3.fromRGB(10, 7, 9),
+		LighterShadow = Color3.fromRGB(18, 12, 15),
+	},
+	Accents = {
+		Main = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(220, 120, 160)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(200, 90, 140)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(180, 70, 120)),
+		}),
+		Brighter = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(235, 160, 190)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(215, 130, 170)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 110, 155)),
+		}),
+	},
+},
+	
 	--PHub = {},
 	--Serika = {},
 	--Rust = {},
 	--Matcha = {},
 	--Vaporwave = {},
 }
+function Tween.Info(style: string?, direction: string?, time: number?)
+	style = style or "Exponential"
+	direction = direction or "Out"
+	time = time or 1
+	return TweenInfo.new(time, Enum.EasingStyle[style], Enum.EasingDirection[direction])
+end
+
+local function AnimateThemeTransition(duration)
+	duration = duration or 1
+	for _, v in pairs(CoreGui:GetDescendants()) do
+		if v:IsA("Frame")
+			or v:IsA("TextLabel")
+			or v:IsA("TextButton")
+			or v:IsA("ImageLabel")
+			or v:IsA("ImageButton")
+		then
+			local props = {}
+
+			if v.BackgroundTransparency < 1 then
+				props.BackgroundTransparency = v.BackgroundTransparency
+				v.BackgroundTransparency = 1
+			end
+
+			if v:IsA("TextLabel") or v:IsA("TextButton") then
+				props.TextTransparency = v.TextTransparency
+				v.TextTransparency = 1
+			end
+
+			if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+				props.ImageTransparency = v.ImageTransparency
+				v.ImageTransparency = 1
+			end
+
+			if next(props) then
+				TweenService:Create(
+					v,
+					TweenInfo.new(
+						duration,
+						Enum.EasingStyle.Exponential,
+						Enum.EasingDirection.Out
+					),
+					props
+				):Play()
+			end
+		end
+	end
+end
 
 local function deepCopy(tbl)
 	if type(tbl) ~= "table" then
@@ -914,21 +1142,83 @@ local function deepCopy(tbl)
 	end
 	return copy
 end
+
+local function deepMerge(base, override)
+	local result = deepCopy(base)
+	for k, v in pairs(override) do
+		if type(v) == "table" and type(result[k]) == "table" then
+			result[k] = deepMerge(result[k], v)
+		else
+			result[k] = deepCopy(v)
+		end
+	end
+	return result
+end
+
+local function ResolveTheme(themes, themeName)
+	local theme = themes[themeName]
+	if not theme then return nil end
+	if theme.Inherits then
+		local base = ResolveTheme(themes, theme.Inherits)
+		return deepMerge(base, theme)
+	end
+	return deepCopy(theme)
+end
+
+local function luminance(c)
+	local function channel(v)
+		v = v / 255
+		if v <= 0.03928 then
+			return v / 12.92
+		end
+		return ((v + 0.055) / 1.055) ^ 2.4
+	end
+	return 0.2126 * channel(c.R * 255)
+		+ 0.7152 * channel(c.G * 255)
+		+ 0.0722 * channel(c.B * 255)
+end
+
+local function ContrastRatio(c1, c2)
+	local l1 = luminance(c1)
+	local l2 = luminance(c2)
+	if l1 < l2 then
+		l1, l2 = l2, l1
+	end
+	return (l1 + 0.05) / (l2 + 0.05)
+end
+
+local function WarnLowContrast(theme, threshold)
+	threshold = threshold or 4.5
+	if not theme.Backgrounds or not theme.Foregrounds then return end
+	for _, fColor in pairs(theme.Foregrounds) do
+		if typeof(fColor) == "Color3" then
+			for _, bColor in pairs(theme.Backgrounds) do
+				if typeof(bColor) == "Color3" then
+					local ratio = ContrastRatio(fColor, bColor)
+					if ratio < threshold then
+						warn("[Theme Contrast Warning] Low contrast detected:", ratio)
+					end
+				end
+			end
+		end
+	end
+end
+
 Starlight.Themes = Themes
-Starlight.CurrentTheme = deepCopy(Themes.Starlight)
+Starlight.CurrentTheme = ResolveTheme(Themes, "Starlight")
+WarnLowContrast(Starlight.CurrentTheme)
+themeEvent:Fire()
+
+
+
 
 --//ENDSUBSECTION
 
-function Tween.Info(style: string?, direction: string?, time: number?)
-	style = style or "Exponential"
-	direction = direction or "Out"
-	time = time or 0.5
-	return TweenInfo.new(time, Enum.EasingStyle[style], Enum.EasingDirection[direction])
-end
 
 local NebulaIcons = isStudio and require(ReplicatedStorage.NebulaIcons)
 
 local connections = {}
+
 
 --// ENDSECTION
 
@@ -1038,28 +1328,52 @@ local ConfigMethods = {
 	end,
 }
 
-local ThemeMethods = {
-	bindTheme = function(object: GuiObject, property, themeKey)
-		local function set()
-			pcall(task.spawn, function()
-				if
-					object.ClassName == "UIGradient"
-					and typeof(GetNestedValue(Starlight.CurrentTheme, themeKey)) == "Color3"
-				then
+bindTheme = function(object: GuiObject, property, themeKey)
+	local initialized = false
+
+	local function set()
+		task.spawn(function()
+			local newValue = GetNestedValue(Starlight.CurrentTheme, themeKey)
+			local oldValue = Starlight.PreviousTheme and GetNestedValue(Starlight.PreviousTheme, themeKey)
+
+			if object.ClassName == "UIGradient" and typeof(newValue) == "Color3" then
+				if initialized then
+					TweenService:Create(
+						object,
+						TweenInfo.new(0.25, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out),
+						{
+							[property] = ColorSequence.new({
+								ColorSequenceKeypoint.new(0, newValue),
+								ColorSequenceKeypoint.new(1, newValue),
+							})
+						}
+					):Play()
+				else
 					object[property] = ColorSequence.new({
-						ColorSequenceKeypoint.new(0, GetNestedValue(Starlight.CurrentTheme, themeKey)),
-						ColorSequenceKeypoint.new(1, GetNestedValue(Starlight.CurrentTheme, themeKey)),
+						ColorSequenceKeypoint.new(0, newValue),
+						ColorSequenceKeypoint.new(1, newValue),
 					})
-					return
 				end
 
-				object[property] = GetNestedValue(Starlight.CurrentTheme, themeKey)
-			end)
-		end
+			elseif typeof(newValue) == "Color3" and typeof(oldValue) == "Color3" and initialized then
+				TweenService:Create(
+					object,
+					TweenInfo.new(0.25, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out),
+					{ [property] = newValue }
+				):Play()
 
-		themeEvent.Event:Connect(set)
-		set()
-	end,
+			else
+				object[property] = newValue
+			end
+
+			initialized = true
+		end)
+	end
+
+	themeEvent.Event:Connect(set)
+	set()
+end,
+
 	encodeTheme = function(theme)
 		local function serialize(data)
 			if typeof(data) == "Color3" then
@@ -10542,9 +10856,12 @@ function Starlight:SetTheme(newTheme)
 		themeToCopy = Starlight.Themes[themeToCopy]
 	end
 
+	Starlight.PreviousTheme = Starlight.CurrentTheme
+	AnimateThemeTransition(0.25)
 	Starlight.CurrentTheme = deepCopy(themeToCopy)
 	themeEvent:Fire()
 end
+
 
 function Starlight:LoadAutoloadTheme()
 	if isStudio or not isfile then
